@@ -8311,7 +8311,8 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 		struct addrinfo hints, *res, *res0;
 		
 		memset(&hints, 0, sizeof(hints));
-		hints.ai_family   = PF_UNSPEC;
+        //国外的WiFi和T-Mobile运营商环境下，系统默认走的是ipv6地址，但是似乎这个地址不能被我们的设备所连接，所以只能强行将连接的地址改成ipv4地址
+		hints.ai_family   = AF_INET;
 		hints.ai_socktype = SOCK_STREAM;
 		hints.ai_protocol = IPPROTO_TCP;
 		
